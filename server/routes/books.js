@@ -30,11 +30,10 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-    res.render('books/details', {
-      title: 'Book Details',
-      books: ''
-    });
-
+        res.render('books/details', {
+          title: 'Book Details',
+          books: ''
+        });
 });
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -45,19 +44,19 @@ router.post('/add', (req, res, next) => {
      *****************/
 
     const bookToAdd = book({
-      "Title": req.body.Title,
-      "Description": req.body.Description,
-      "Price": req.body.Price,
-      "Author": req.body.Author,
-      "Genre": req.body.Genre
+      "Title": req.body.title,
+      "Description": req.body.description,
+      "Price": req.body.price,
+      "Author": req.body.author,
+      "Genre": req.body.genre
     });
 
-    book.create(bookToAdd, (error, newBook) => {
+    book.create(bookToAdd, (error) => {
       if (error) {
         console.log(error);
         res.end(error);
       } else {
-        res.redirect('/');
+        res.redirect('/books');
       }
     })
 
@@ -107,7 +106,7 @@ router.post('/:id', (req, res, next) => {
         console.log(error);
         res.end(error);
       } else {
-        res.redirect('books/details');
+        res.redirect('/books');
       }
     })
 
@@ -129,7 +128,7 @@ router.get('/delete/:id', (req, res, next) => {
         console.log(error);
         res.end(error);
       } else {
-        res.redirect('books/details');
+        res.redirect('/books');
       }
     })
 });
