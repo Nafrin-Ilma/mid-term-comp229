@@ -75,7 +75,7 @@ router.get('/:id', (req, res, next) => {
         console.log(error);
         res.end(error);
       } else {
-        res.redirect('books/details', {
+        res.render('books/details', {
           title: 'Book Details',
           books: selectedBook
         });
